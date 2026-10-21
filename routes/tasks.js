@@ -96,7 +96,7 @@ module.exports = function (router) {
         var task = v.isId(req.params.id) ? await Task.findByIdAndDelete(req.params.id) : null;
         if (!task) return respond.notFound(res, 'Task not found.');
         await refs.removeTaskFromUsers(task._id);
-        respond.ok(res, task, 'Task deleted.');
+        respond.noContent(res);
     });
 
     return router;

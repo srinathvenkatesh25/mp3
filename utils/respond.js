@@ -6,6 +6,8 @@ function send(res, status, message, data) {
 module.exports = {
     ok: function (res, data, message) { return send(res, 200, message || 'OK', data); },
     created: function (res, data, message) { return send(res, 201, message || 'Created', data); },
+    // 204 means "success, nothing to send back", so there is deliberately no body
+    noContent: function (res) { return res.status(204).end(); },
     badRequest: function (res, message) { return send(res, 400, message, {}); },
     notFound: function (res, message) { return send(res, 404, message, {}); },
     // err is { status, message }, as returned by the checks in references.js
